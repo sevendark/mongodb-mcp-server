@@ -45,7 +45,7 @@ To use this server with the Claude Desktop app, add the following configuration 
       "command": "npx",
       "args": [
         "-y" ,
-        "@modelcontextprotocol/server-mongodb"
+        "@pash1986/mcp-server-mongodb"
       ],
      "env" : {
 	"MONGODB_URI" : "mongodb+srv://<yourcluster>" // 'mongodb://localhost:27017'
