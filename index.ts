@@ -11,7 +11,8 @@ import {
   McpError
 } from "@modelcontextprotocol/sdk/types.js";
 import { MongoClient, Db, Collection, Document, AggregateOptions } from "mongodb";
-import dotenv from "dotenv";
+//import dotenv from "dotenv";
+import * as dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -75,9 +76,30 @@ class MongoDBServer {
       console.error("[MCP Error]", error);
     };
 
-    process.on('SIGINT', async () => {
-      await this.close();
-      process.exit(0);
+    // Handle both SIGINT (Ctrl+C) and SIGTERM (process termination)
+    const cleanup = async () => {
+      console.log("Shutting down MongoDB MCP server...");
+      try {
+        await this.close();
+        process.exit(0);
+      } catch (error) {
+        console.error("Error during cleanup:", error);
+        process.exit(1);
+      }
+    };
+
+    process.on('SIGINT', cleanup);
+    process.on('SIGTERM', cleanup);
+
+    // Handle uncaught exceptions and unhandled rejections
+    process.on('uncaughtException', async (error) => {
+      console.error('Uncaught Exception:', error);
+      await cleanup();
+    });
+
+    process.on('unhandledRejection', async (reason, promise) => {
+      console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+      await cleanup();
     });
   }
 

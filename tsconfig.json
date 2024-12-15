@@ -1,17 +1,15 @@
 {
-  "target": "ES2022",
-  "module": "Node16",
-  "moduleResolution": "Node16",
-  "strict": true,
-  "esModuleInterop": true,
-  "skipLibCheck": true,
-  "forceConsistentCasingInFileNames": true,
-  "resolveJsonModule": true,
   "compilerOptions": {
+    "target": "ES2022",
+    "module": "Node16",
+    "moduleResolution": "Node16",
     "outDir": "./build",
-    "rootDir": "."
+    "rootDir": "./",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "./**/*.ts"
-  ]
+  "include": ["**/*"],
+  "exclude": ["node_modules"]
 }

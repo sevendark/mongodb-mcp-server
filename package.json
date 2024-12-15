@@ -1,5 +1,5 @@
 {
-  "name": "@modelcontextprotocol/server-mongodb",
+  "name": "@pash1986/mongodb-mcp-server",
   "version": "0.1.7",
   "description": "MongoDB MCP server for local mongodb queries",
   "type": "module",
