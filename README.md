@@ -53,6 +53,33 @@ To use this server with the Claude Desktop app, add the following configuration 
     }
 ```
 
+## Usage with Cline
+
+To use this server with the Cline, add the `@pash1986/mcp-server-mongodb` part to `cline_mcp_settings.json`:
+
+This example is for windows, for linux/mac you need to change the command to `npx` and remove `/c` and `npx` part from args.
+
+```json
+{
+  "mcpServers": {
+    "@pash1986/mcp-server-mongodb": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@pash1986/mcp-server-mongodb"
+      ],
+      "env": {
+        "MONGODB_URI": "mongodb://localhost:27017/mydb"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+
 Replace `mydb` with your database name and adjust the connection string as needed.
 
 ## Example Usage
